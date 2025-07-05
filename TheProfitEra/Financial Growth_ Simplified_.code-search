@@ -1,0 +1,48 @@
+# Query: Financial Growth, Simplified.
+# ContextLines: 1
+
+9 results - 8 files
+
+about.html:
+  118                      <h3 class="text-xl font-bold mb-4">TheProfitEra</h3>
+  119:                     <p class="text-gray-400 dark:text-gray-500 mb-4 text-sm">“Empower your wealth”</p>
+  120                      <div class="flex space-x-4">
+
+calculators.html:
+  234                      <h3 class="text-xl font-bold mb-4">TheProfitEra</h3>
+  235:                     <p class="text-gray-400 dark:text-gray-500 mb-4 text-sm">“Empower your wealth”</p>
+  236                      <div class="flex space-x-4">
+
+contact.html:
+  159                      <h3 class="text-xl font-bold mb-4">TheProfitEra</h3>
+  160:                     <p class="text-gray-400 dark:text-gray-500 mb-4 text-sm">“Empower your wealth”</p>
+  161                      <div class="flex space-x-4">
+
+index.html:
+   70              <div class="container mx-auto px-4 text-center">
+   71:                 <h1 class="text-4xl md:text-6xl font-bold text-gray-900 dark:text-gray-50 leading-tight animate-fade-in-up">“Empower your wealth”</h1>
+   72                  <p class="mt-4 text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto animate-fade-in-up delay-100">Welcome to TheProfitEra. We provide fast, secure, and transparent loan solutions and investment opportunities tailored to your needs, powered by modern technology.</p>
+
+  264                      <h3 class="text-xl font-bold mb-4">TheProfitEra</h3>
+  265:                     <p class="text-gray-400 dark:text-gray-500 mb-4 text-sm">“Empower your wealth”</p>
+  266                      <div class="flex space-x-4">
+
+investments.html:
+  159                      <h3 class="text-xl font-bold mb-4">TheProfitEra</h3>
+  160:                     <p class="text-gray-400 dark:text-gray-500 mb-4 text-sm">“Empower your wealth”</p>
+  161                      <div class="flex space-x-4">
+
+privacy-policy.html:
+  167                      <h3 class="text-xl font-bold mb-4">TheProfitEra</h3>
+  168:                     <p class="text-gray-400 dark:text-gray-500 mb-4 text-sm">“Empower your wealth”</p>
+  169                      <div class="flex space-x-4">
+
+products.html:
+  193                      <h3 class="text-xl font-bold mb-4">TheProfitEra</h3>
+  194:                     <p class="text-gray-400 dark:text-gray-500 mb-4 text-sm">“Empower your wealth”</p>
+  195                      <div class="flex space-x-4">
+
+terms-conditions.html:
+  175                      <h3 class="text-xl font-bold mb-4">TheProfitEra</h3>
+  176:                     <p class="text-gray-400 dark:text-gray-500 mb-4 text-sm">“Empower your wealth”</p>
+  177                      <div class="flex space-x-4">
