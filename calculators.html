@@ -3,82 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Financial Calculators - TheProfitEra</title>
-    <meta name="description" content="Use TheProfitEra's free financial calculators including EMI, SIP, and FD calculators to plan your loans and investments effectively.">
-    <meta name="keywords" content="EMI calculator, SIP calculator, FD calculator, loan calculator, investment calculator, financial planning, online calculator, India finance">
+    <title>Financial Calculators - The Profit Era</title>
+    <meta name="description" content="Use The Profit Era's free EMI, SIP, and FD calculators to plan your loans and investments effectively in India with theprofitera.">
+    <meta name="keywords" content="The Profit Era, theprofitera, EMI calculator, SIP calculator India, FD calculator online, loan calculator, investment calculator, financial planning tools, India finance">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Financial Calculators - The Profit Era">
+    <meta property="og:description" content="Plan your financial future with The Profit Era's free EMI, SIP, and FD calculators. Accurate tools by theprofitera for loans and investments in India.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.theprofitera.com/calculators.html">
+    <meta property="og:image" content="https://www.theprofitera.com/assets/img/logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Financial Calculators - The Profit Era">
+    <meta name="twitter:description" content="Use The Profit Era's free EMI, SIP, and FD calculators by theprofitera to plan your financial goals in India.">
+    <meta name="twitter:image" content="https://www.theprofitera.com/assets/img/logo.png">
     <link rel="canonical" href="https://www.theprofitera.com/calculators.html">
-
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?client"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        };
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
-
-   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2678938908229275"
-     crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2678938908229275" crossorigin="anonymous"></script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Financial Calculators - The Profit Era",
+        "description": "Free EMI, SIP, and FD calculators by The Profit Era (theprofitera) to plan your loans and investments in India.",
+        "url": "https://www.theprofitera.com/calculators.html",
+        "publisher": {
+            "@type": "Organization",
+            "name": "The Profit Era",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.theprofitera.com/assets/img/logo.png"
+            }
+        }
+    }
+    </script>
 </head>
 <body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100">
-
     <header id="header" class="bg-white shadow-sm sticky top-0 z-50 dark:bg-gray-800">
         <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
             <a href="index.html" class="flex items-center space-x-2 text-2xl font-bold brand-text">
-                <img src="assets/img/logo.png" alt="TheProfitEra Logo" class="h-8 w-8">
-                <span>TheProfitEra</span>
+                <img src="assets/img/logo.png" alt="The Profit Era Logo" class="h-8 w-8" loading="lazy">
+                <span>The Profit Era</span>
             </a>
             <div class="flex items-center space-x-6 md:space-x-8">
                 <div class="hidden md:flex space-x-6 lg:space-x-8">
+                    <a href="index.html" class="nav-link text-gray-600 dark:text-gray-200 font-medium hover:brand-text">Home</a>
                     <a href="products.html" class="nav-link text-gray-600 dark:text-gray-200 font-medium hover:brand-text">Products</a>
                     <a href="investments.html" class="nav-link text-gray-600 dark:text-gray-200 font-medium hover:brand-text">Investments</a>
                     <a href="calculators.html" class="nav-link text-gray-600 dark:text-gray-200 font-medium active">Calculators</a>
                     <a href="about.html" class="nav-link text-gray-600 dark:text-gray-200 font-medium hover:brand-text">About Us</a>
                     <a href="contact.html" class="nav-link text-gray-600 dark:text-gray-200 font-medium hover:brand-text">Contact</a>
                 </div>
-                <button id="theme-toggle" class="p-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 focus:outline-none transition-colors duration-300">
+                <button id="theme-toggle" aria-label="Toggle dark mode" class="p-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300 transition-colors duration-300">
                     <svg id="sun-icon" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.106a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.06l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5h2.25a.75.75 0 01.75.75zM17.894 17.894a.75.75 0 001.06-1.06l-1.59-1.59a.75.75 0 00-1.06 1.06l1.59 1.59zM12 18.75a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0v-2.25a.75.75 0 01.75-.75zM6.106 18.894a.75.75 0 001.06-1.06l-1.59-1.59a.75.75 0 10-1.06 1.06l1.59 1.59zM4.5 12a.75.75 0 01-.75.75H2.25a.75.75 0 010-1.5h1.5a.75.75 0 01.75.75zM6.106 5.106a.75.75 0 00-1.06 1.06l1.59 1.59a.75.75 0 001.06-1.06l1.59-1.59z"/>
                     </svg>
                     <svg id="moon-icon" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 01.176 1.492A12.705 12.705 0 008.25 9.75c0 2.597.973 5.013 2.746 6.844.77.77 1.62.973 2.51.65l.176-.063a.75.75 0 01.926.926l-.063.176c-.323.89-.12 1.74.65 2.51 1.831 1.773 4.247 2.746 6.844 2.746a12.705 12.705 0 006.532-1.452.75.75 0 011.492.176l.063.176a.75.75 0 01-.926.926l-.176-.063a12.705 12.705 0 01-6.844-2.746c-.77-.77-.973-1.62-.65-2.51l.063-.176a.75.75 0 01-.926-.926l-.176.063c-.89.323-1.74.12-2.51-.65-1.773-1.831-2.746-4.247-2.746-6.844a12.705 12.705 0 001.452-6.532.75.75 0 01-.176-1.492l-.063-.176a.75.75 0 01.926-.926l.176.063z" clip-rule="evenodd" />
+                        <path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 01.176 1.492A12.705 12.705 0 008.25 9.75c0 2.597.973 5.013 2.746 6.844.77.77 1.62.973 2.51.65l.176-.063a.75.75 0 01.926.926l-.063.176c-.323.89-.12 1.74.65 2.51 1.831 1.773 4.247 2.746 6.844 2.746a12.705 12.705 0 006.532-1.452.75.75 0 011.492.176l.063.176a.75.75 0 01-.926.926l-.176-.063a12.705 12.705 0 01-6.844-2.746c-.77-.77-.973-1.62-.65-2.51l.063-.176a.75.75 0 01-.926-.926l-.176.063c-.89.323-1.74.12-2.51-.65-1.773-1.831-2.746-4.247-2.746-6.844a12.705 12.705 0 001.452-6.532.75.75 0 01-.176-1.492l-.063-.176a.75.75 0 01.926-.926l.176.063z" clip-rule="evenodd"/>
                     </svg>
                 </button>
-                <a href="products.html" class="hidden md:block bg-blue-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors">Apply Now</a>
+                <a href="products.html" class="hidden md:block bg-blue-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-transform transform hover:scale-105 focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300">Apply Now</a>
             </div>
-            <button id="mobile-menu-button" class="md:hidden text-gray-700 dark:text-gray-200 focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            <button id="mobile-menu-button" aria-label="Toggle mobile menu" class="md:hidden text-gray-700 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
             </button>
         </nav>
         <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 shadow-md">
             <a href="products.html" class="block py-2 px-6 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Products</a>
             <a href="investments.html" class="block py-2 px-6 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Investments</a>
             <a href="calculators.html" class="block py-2 px-6 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 active">Calculators</a>
-            <a href="about.html" class="block py-2 px-6 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Why Us</a>
+            <a href="about.html" class="block py-2 px-6 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">About Us</a>
             <a href="contact.html" class="block py-2 px-6 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Contact</a>
             <div class="p-4">
-                <a href="products.html" class="block text-center bg-blue-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors">Apply Now</a>
+                <a href="products.html" class="block text-center bg-blue-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-transform transform hover:scale-105 focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300">Apply Now</a>
             </div>
         </div>
     </header>
-
-    <main class="container mx-auto px-4 py-12">
+    <main class="container mx-auto px-4 py-12 bg-gray-50 dark:bg-gray-900">
         <section id="calculators-page" class="py-12">
             <div class="text-center mb-12">
-                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-50">Financial Calculators</h1>
-                <p class="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">Plan your loans and investments with our easy-to-use and accurate financial tools.</p>
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-50 animate-fade-in-up">The Profit Era Financial Calculators</h1>
+                <p class="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto animate-fade-in-up delay-100">Plan your financial future with The Profit Era's (theprofitera) easy-to-use EMI, SIP, and FD calculators for loans and investments in India.</p>
             </div>
-
-            <div class="flex flex-wrap justify-center gap-4 mb-12">
-                <button onclick="showCalculator('emi')" class="calculator-card-button bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors shadow-md">EMI Calculator</button>
-                <button onclick="showCalculator('sip')" class="calculator-card-button bg-green-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors shadow-md">SIP Calculator</button>
-                <button onclick="showCalculator('fd')" class="calculator-card-button bg-purple-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-purple-700 transition-colors shadow-md">FD Calculator</button>
+            <div class="flex flex-wrap justify-center gap-4 mb-12 animate-fade-in-up delay-200">
+                <button onclick="showCalculator('emi')" aria-label="Open EMI Calculator" class="calculator-card-button bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 hover:shadow-xl transition-all transform hover:scale-105 focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300 shadow-md">EMI Calculator</button>
+                <button onclick="showCalculator('sip')" aria-label="Open SIP Calculator" class="calculator-card-button bg-green-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-green-700 hover:shadow-xl transition-all transform hover:scale-105 focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300 shadow-md">SIP Calculator</button>
+                <button onclick="showCalculator('fd')" aria-label="Open FD Calculator" class="calculator-card-button bg-purple-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-purple-700 hover:shadow-xl transition-all transform hover:scale-105 focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300 shadow-md">FD Calculator</button>
             </div>
-
-            <div id="emi-calculator-section" class="calculator-section bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 md:p-8 hidden">
+            <article id="emi-calculator-section" class="calculator-section bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 md:p-8 hidden hover:shadow-xl transition-all transform hover:scale-[1.02] animate-fade-in-up delay-300" aria-labelledby="emi-title">
                 <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white">EMI Calculator</h2>
-                    <button onclick="hideAllCalculators()" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+                    <h2 id="emi-title" class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-gray-50">The Profit Era EMI Calculator</h2>
+                    <button onclick="hideAllCalculators()" aria-label="Close EMI Calculator" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                         </svg>
                     </button>
                 </div>
@@ -87,22 +115,22 @@
                         <div class="mb-6">
                             <label for="loanAmount" class="block font-medium text-gray-700 dark:text-gray-200 mb-2">Loan Amount (₹)</label>
                             <input type="text" id="loanAmountValue" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg text-lg font-semibold bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-50" value="25,00,000">
-                            <input type="range" id="loanAmount" min="50000" max="20000000" step="50000" value="2500000" class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer slider-thumb mt-2">
+                            <input type="range" id="loanAmount" min="50000" max="20000000" step="50000" value="2500000" class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer slider-thumb mt-2" aria-label="Adjust Loan Amount">
                         </div>
                         <div class="mb-6">
                             <label for="interestRate" class="block font-medium text-gray-700 dark:text-gray-200 mb-2">Interest Rate (% p.a.)</label>
                             <input type="text" id="interestRateValue" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg text-lg font-semibold bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-50" value="8.5">
-                            <input type="range" id="interestRate" min="6" max="18" step="0.1" value="8.5" class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer slider-thumb mt-2">
+                            <input type="range" id="interestRate" min="6" max="18" step="0.1" value="8.5" class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer slider-thumb mt-2" aria-label="Adjust Interest Rate">
                         </div>
                         <div class="mb-6">
                             <label for="loanTenure" class="block font-medium text-gray-700 dark:text-gray-200 mb-2">Loan Tenure (Years)</label>
                             <input type="text" id="loanTenureValue" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg text-lg font-semibold bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-50" value="20">
-                            <input type="range" id="loanTenure" min="1" max="30" step="1" value="20" class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer slider-thumb mt-2">
+                            <input type="range" id="loanTenure" min="1" max="30" step="1" value="20" class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer slider-thumb mt-2" aria-label="Adjust Loan Tenure">
                         </div>
                     </div>
                     <div class="text-center">
                         <div class="chart-container">
-                            <canvas id="emiChart"></canvas>
+                            <canvas id="emiChart" aria-label="EMI Chart showing Principal and Interest"></canvas>
                         </div>
                         <div class="mt-6">
                             <p class="text-gray-600 dark:text-gray-300 text-lg">Your Monthly EMI</p>
@@ -115,14 +143,13 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div id="sip-calculator-section" class="calculator-section bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 md:p-8 hidden">
+            </article>
+            <article id="sip-calculator-section" class="calculator-section bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 md:p-8 hidden hover:shadow-xl transition-all transform hover:scale-[1.02] animate-fade-in-up delay-300" aria-labelledby="sip-title">
                 <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white">SIP Calculator</h2>
-                    <button onclick="hideAllCalculators()" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+                    <h2 id="sip-title" class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-gray-50">The Profit Era SIP Calculator</h2>
+                    <button onclick="hideAllCalculators()" aria-label="Close SIP Calculator" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                         </svg>
                     </button>
                 </div>
@@ -131,22 +158,22 @@
                         <div class="mb-6">
                             <label for="monthlyInvestment" class="block font-medium text-gray-700 dark:text-gray-200 mb-2">Monthly Investment (₹)</label>
                             <input type="text" id="monthlyInvestmentValue" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg text-lg font-semibold bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-50" value="5,000">
-                            <input type="range" id="monthlyInvestment" min="500" max="100000" step="500" value="5000" class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer slider-thumb mt-2">
+                            <input type="range" id="monthlyInvestment" min="500" max="100000" step="500" value="5000" class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer slider-thumb mt-2" aria-label="Adjust Monthly Investment">
                         </div>
                         <div class="mb-6">
                             <label for="sipReturnRate" class="block font-medium text-gray-700 dark:text-gray-200 mb-2">Expected Return Rate (% p.a.)</label>
                             <input type="text" id="sipReturnRateValue" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg text-lg font-semibold bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-50" value="12">
-                            <input type="range" id="sipReturnRate" min="1" max="30" step="0.1" value="12" class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer slider-thumb mt-2">
+                            <input type="range" id="sipReturnRate" min="1" max="30" step="0.1" value="12" class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer slider-thumb mt-2" aria-label="Adjust Expected Return Rate">
                         </div>
                         <div class="mb-6">
                             <label for="investmentPeriod" class="block font-medium text-gray-700 dark:text-gray-200 mb-2">Investment Period (Years)</label>
                             <input type="text" id="investmentPeriodValue" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg text-lg font-semibold bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-50" value="10">
-                            <input type="range" id="investmentPeriod" min="1" max="40" step="1" value="10" class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer slider-thumb mt-2">
+                            <input type="range" id="investmentPeriod" min="1" max="40" step="1" value="10" class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer slider-thumb mt-2" aria-label="Adjust Investment Period">
                         </div>
                     </div>
                     <div class="text-center">
                         <div class="chart-container">
-                            <canvas id="sipChart"></canvas>
+                            <canvas id="sipChart" aria-label="SIP Chart showing Invested Amount and Wealth Gained"></canvas>
                         </div>
                         <div class="mt-6">
                             <p class="text-gray-600 dark:text-gray-300 text-lg">Estimated Value</p>
@@ -158,14 +185,13 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div id="fd-calculator-section" class="calculator-section bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 md:p-8 hidden">
+            </article>
+            <article id="fd-calculator-section" class="calculator-section bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 md:p-8 hidden hover:shadow-xl transition-all transform hover:scale-[1.02] animate-fade-in-up delay-300" aria-labelledby="fd-title">
                 <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white">FD Calculator</h2>
-                    <button onclick="hideAllCalculators()" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+                    <h2 id="fd-title" class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-gray-50">The Profit Era FD Calculator</h2>
+                    <button onclick="hideAllCalculators()" aria-label="Close FD Calculator" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                         </svg>
                     </button>
                 </div>
@@ -174,21 +200,21 @@
                         <div class="mb-6">
                             <label for="fdPrincipal" class="block font-medium text-gray-700 dark:text-gray-200 mb-2">Principal Amount (₹)</label>
                             <input type="text" id="fdPrincipalValue" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg text-lg font-semibold bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-50" value="1,00,000">
-                            <input type="range" id="fdPrincipal" min="10000" max="10000000" step="10000" value="100000" class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer slider-thumb mt-2">
+                            <input type="range" id="fdPrincipal" min="10000" max="10000000" step="10000" value="100000" class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer slider-thumb mt-2" aria-label="Adjust Principal Amount">
                         </div>
                         <div class="mb-6">
                             <label for="fdInterestRate" class="block font-medium text-gray-700 dark:text-gray-200 mb-2">Interest Rate (% p.a.)</label>
                             <input type="text" id="fdInterestRateValue" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg text-lg font-semibold bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-50" value="7.0">
-                            <input type="range" id="fdInterestRate" min="4" max="10" step="0.1" value="7.0" class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer slider-thumb mt-2">
+                            <input type="range" id="fdInterestRate" min="4" max="10" step="0.1" value="7.0" class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer slider-thumb mt-2" aria-label="Adjust Interest Rate">
                         </div>
                         <div class="mb-6">
                             <label for="fdTenure" class="block font-medium text-gray-700 dark:text-gray-200 mb-2">Tenure (Years)</label>
                             <input type="text" id="fdTenureValue" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg text-lg font-semibold bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-50" value="5">
-                            <input type="range" id="fdTenure" min="1" max="10" step="1" value="5" class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer slider-thumb mt-2">
+                            <input type="range" id="fdTenure" min="1" max="10" step="1" value="5" class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer slider-thumb mt-2" aria-label="Adjust Tenure">
                         </div>
                         <div class="mb-6">
                             <label for="compoundingFrequency" class="block font-medium text-gray-700 dark:text-gray-200 mb-2">Compounding Frequency</label>
-                            <select id="compoundingFrequency" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg text-lg font-semibold bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-50">
+                            <select id="compoundingFrequency" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg text-lg font-semibold bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-50 focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300" aria-label="Select Compounding Frequency">
                                 <option value="1">Annually</option>
                                 <option value="2">Half-Yearly</option>
                                 <option value="4" selected>Quarterly</option>
@@ -198,7 +224,7 @@
                     </div>
                     <div class="text-center">
                         <div class="chart-container">
-                            <canvas id="fdChart"></canvas>
+                            <canvas id="fdChart" aria-label="FD Chart showing Principal Invested and Interest Earned"></canvas>
                         </div>
                         <div class="mt-6">
                             <p class="text-gray-600 dark:text-gray-300 text-lg">Maturity Amount</p>
@@ -210,51 +236,57 @@
                         </div>
                     </div>
                 </div>
+            </article>
+            <div class="text-center mt-8 animate-fade-in-up delay-400">
+                <a href="products.html" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-transform transform hover:scale-105 focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300">Explore The Profit Era’s Financial Solutions</a>
             </div>
-             <section class="container mx-auto px-4 py-8 text-center">
+            <section class="container mx-auto px-4 py-8 text-center">
                 <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-4">
                     <p class="text-gray-500 dark:text-gray-400 mb-2">Advertisement</p>
-                    <ins class="adsbygoogle"
-                         style="display:block"
-                         data-ad-client="ca-pub-YOUR_PUB_ID"
-                         data-ad-slot="YOUR_AD_SLOT_ID_CALCULATORS_PAGE"
-                         data-ad-format="auto"
-                         data-full-width-responsive="true"></ins>
-                    <script>
-                         (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
+                    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2678938908229275" data-ad-slot="YOUR_AD_SLOT_ID_CALCULATORS_PAGE" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 </div>
             </section>
         </section>
     </main>
-
     <footer class="bg-gray-800 dark:bg-gray-900 text-white dark:text-gray-100">
         <div class="container mx-auto px-4 py-12">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
                     <h3 class="text-xl font-bold mb-4">The Profit Era</h3>
-                    <p class="text-gray-400 dark:text-gray-500 mb-4 text-sm">“Empower your wealth”</p>
+                    <p class="text-gray-400 dark:text-gray-500 mb-4 text-sm">“Empower your wealth with theprofitera”</p>
                     <div class="flex space-x-4">
-                       <a href="https://twitter.com/theprofitera" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="text-gray-400 hover:text-blue-400 dark:hover:text-blue-300 transition-colors">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg>
+                        <a href="https://twitter.com/theprofitera" target="_blank" rel="noopener noreferrer" aria-label="The Profit Era Twitter" class="text-gray-400 hover:text-blue-400 dark:hover:text-blue-300 transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+                            </svg>
                         </a>
-                        <a href="https://www.facebook.com/people/The-Profit-Era/61572953304388/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-gray-400 hover:text-blue-400 dark:hover:text-blue-300 transition-colors">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"></path></svg>
+                        <a href="https://www.facebook.com/people/The-Profit-Era/61572953304388/" target="_blank" rel="noopener noreferrer" aria-label="The Profit Era Facebook" class="text-gray-400 hover:text-blue-400 dark:hover:text-blue-300 transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"></path>
+                            </svg>
                         </a>
-                        <a href="https://www.instagram.com/theprofitera25/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-gray-400 hover:text-pink-400 dark:hover:text-pink-300 transition-colors">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"></path></svg>
+                        <a href="https://www.instagram.com/theprofitera25/" target="_blank" rel="noopener noreferrer" aria-label="The Profit Era Instagram" class="text-gray-400 hover:text-pink-400 dark:hover:text-pink-300 transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"></path>
+                            </svg>
                         </a>
-                        <a href="https://www.youtube.com/@THEPROFITERA25" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="text-gray-400 hover:text-red-400 dark:hover:text-red-300 transition-colors">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.417-4.814a2.507 2.507 0 0 1 1.768-1.768C5.744 5 11.998 5 11.998 5s6.255 0 7.814.418ZM15.194 12 10 15V9l5.194 3Z" clip-rule="evenodd"></path></svg>
+                        <a href="https://www.youtube.com/@THEPROFITERA25" target="_blank" rel="noopener noreferrer" aria-label="The Profit Era YouTube" class="text-gray-400 hover:text-red-400 dark:hover:text-red-300 transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.417-4.814a2.507 2.507 0 0 1 1.768-1.768C5.744 5 11.998 5 11.998 5s6.255 0 7.814.418ZM15.194 12 10 15V9l5.194 3Z" clip-rule="evenodd"></path>
+                            </svg>
                         </a>
-                        <a href="https://www.threads.com/@theprofitera25" target="_blank" rel="noopener noreferrer" aria-label="Threads" class="text-gray-400 hover:text-gray-200 dark:hover:text-gray-300 transition-colors">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.651 24h7.75c2.521 0 4.567-2.046 4.567-4.565v-7.75c0-2.52-2.046-4.565-4.567-4.565h-7.75C3.13 7.12 1.084 9.165 1.084 11.685v7.75C1.084 21.954 3.13 24 5.651 24zm1.293-4.565c0-.704.57-1.277 1.273-1.277.704 0 1.273.573 1.273 1.277v1.277h-2.546v-1.277zm4.274 0c0-.704.57-1.277 1.273-1.277s1.273.573 1.273 1.277v1.277h-2.546v-1.277zm-4.274-2.554c0-.704.57-1.277 1.273-1.277.704 0 1.273.573 1.273 1.277v1.277H7.944v-1.277zm4.274 0c0-.704.57-1.277 1.273-1.277s1.273.573 1.273 1.277v1.277h-2.546v-1.277zm-4.274-2.553c0-.704.57-1.277 1.273-1.277.704 0 1.273.573 1.273 1.277v1.277H7.944v-1.277zm4.274 0c0-.704.57-1.277 1.273-1.277s1.273.573 1.273 1.277v1.277h-2.546v-1.277z"></path></svg>
+                        <a href="https://www.threads.com/@theprofitera25" target="_blank" rel="noopener noreferrer" aria-label="The Profit Era Threads" class="text-gray-400 hover:text-gray-200 dark:hover:text-gray-300 transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M5.651 24h7.75c2.521 0 4.567-2.046 4.567-4.565v-7.75c0-2.52-2.046-4.565-4.567-4.565h-7.75C3.13 7.12 1.084 9.165 1.084 11.685v7.75C1.084 21.954 3.13 24 5.651 24zm1.293-4.565c0-.704.57-1.277 1.273-1.277.704 0 1.273.573 1.273 1.277v1.277h-2.546v-1.277zm4.274 0c0-.704.57-1.277 1.273-1.277s1.273.573 1.273 1.277v1.277h-2.546v-1.277zm-4.274-2.554c0-.704.57-1.277 1.273-1.277.704 0 1.273.573 1.273 1.277v1.277H7.944v-1.277zm4.274 0c0-.704.57-1.277 1.273-1.277s1.273.573 1.273 1.277v1.277h-2.546v-1.277zm-4.274-2.553c0-.704.57-1.277 1.273-1.277.704 0 1.273.573 1.273 1.277v1.277H7.944v-1.277zm4.274 0c0-.704.57-1.277 1.273-1.277s1.273.573 1.273 1.277v1.277h-2.546v-1.277z"></path>
+                            </svg>
                         </a>
                     </div>
                 </div>
                 <div>
                     <h4 class="font-semibold mb-4 text-lg">Quick Links</h4>
                     <ul>
+                        <li class="mb-2"><a href="index.html" class="text-gray-400 dark:text-gray-300 hover:text-blue-400 dark:hover:text-blue-300 transition-colors text-sm">Home</a></li>
                         <li class="mb-2"><a href="products.html" class="text-gray-400 dark:text-gray-300 hover:text-blue-400 dark:hover:text-blue-300 transition-colors text-sm">Products</a></li>
                         <li class="mb-2"><a href="investments.html" class="text-gray-400 dark:text-gray-300 hover:text-blue-400 dark:hover:text-blue-300 transition-colors text-sm">Investments</a></li>
                         <li class="mb-2"><a href="calculators.html" class="text-gray-400 dark:text-gray-300 hover:text-blue-400 dark:hover:text-blue-300 transition-colors text-sm">Calculators</a></li>
@@ -274,20 +306,15 @@
                     <h4 class="font-semibold mb-4 text-lg">Contact Us</h4>
                     <p class="text-gray-400 dark:text-gray-500 text-sm">support@theprofitera.com</p>
                     <p class="text-gray-400 dark:text-gray-500 text-sm">+91 9008522146</p>
-                   <p class="text-gray-400 dark:text-gray-500 mt-4 text-sm">
-                      4/3 Dakshin Gangotri, Supela<br>
-                      Bhilai, Dist. Durg, Chhattisgarh, India – 490023
-                    </p>
-
+                    <p class="text-gray-400 dark:text-gray-500 mt-4 text-sm">4/3 Dakshin Gangotri, Supela<br>Bhilai, Dist. Durg, Chhattisgarh, India – 490023</p>
                 </div>
             </div>
             <div class="mt-8 pt-8 border-t border-gray-700 dark:border-gray-700 text-center text-gray-500 dark:text-gray-400 text-sm">
-                <p>&copy; <span id="current-year-footer-calc"></span> TheProfitEra. All Rights Reserved.</p>
-                 <p class="mt-1">Designed with ❤️ for financial freedom by <a href="https://www.linkedin.com/in/vivek791/" target="_blank" rel="noopener noreferrer" class="text-blue-400 dark:text-blue-300 hover:underline">Vivek Singh</a></p>
+                <p>© <span id="current-year">2025</span> The Profit Era. All Rights Reserved.</p>
+                <p class="mt-1">Designed with ❤️ for financial freedom by <a href="https://www.linkedin.com/in/vivek791/" target="_blank" rel="noopener noreferrer" class="text-blue-400 dark:text-blue-300 hover:underline">Vivek Singh</a></p>
             </div>
         </div>
     </footer>
-
     <script src="assets/js/script.js"></script>
     <script src="assets/js/calculator.js"></script>
 </body>

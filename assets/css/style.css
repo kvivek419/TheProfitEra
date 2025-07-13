@@ -1,104 +1,216 @@
-/* Base styles for Inter font and general body */
+/* ==========================================================================
+   Base Styles
+   ========================================================================== */
+
+/* Set default font, background, and text color for the entire page */
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #F9FAFB;
-    color: #1F2937;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 16px;
+    line-height: 1.5;
+    background-color: #F9FAFB; /* Light gray background for light mode */
+    color: #1F2937; /* Dark gray text for light mode */
+    text-rendering: optimizeLegibility; /* Improve font rendering */
+    -webkit-font-smoothing: antialiased; /* Smooth fonts on WebKit browsers */
+    -moz-osx-font-smoothing: grayscale; /* Smooth fonts on Firefox macOS */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth theme transitions */
 }
 
-/* Custom color variables for easy theme switching */
+/* Reset default margins and padding for consistency */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
+   Custom Color Variables
+   ========================================================================== */
+
+/* Define reusable color classes for branding and theming */
 .hero-bg {
-    background-color: #f0f4f8;
+    background-color: #F0F4F8; /* Light blue-gray for hero sections */
 }
 
 .brand-text {
-    color: #2563EB; /* Blue-600 */
+    color: #2563EB; /* Blue-600 for brand text in light mode */
+    font-weight: 600; /* Slightly bold for emphasis */
 }
 
 .brand-bg {
-    background-color: #2563EB;
+    background-color: #2563EB; /* Blue-600 for brand backgrounds */
 }
 
 .brand-bg-light {
-    background-color: #DBEAFE; /* Blue-100 */
+    background-color: #DBEAFE; /* Blue-100 for light brand backgrounds */
 }
 
 .accent-text {
-    color: #16A34A; /* Green-600 */
+    color: #16A34A; /* Green-600 for accent text in light mode */
+    font-weight: 600; /* Slightly bold for emphasis */
 }
 
 .accent-bg {
-    background-color: #16A34A;
+    background-color: #16A34A; /* Green-600 for accent backgrounds */
 }
 
-/* Navigation link styling */
+/* ==========================================================================
+   Navigation Styling
+   ========================================================================== */
+
+/* Style navigation links with hover and active states */
 .nav-link {
-    transition: color 0.3s ease;
+    color: #1F2937; /* Dark gray in light mode */
+    transition: color 0.3s ease; /* Smooth color transition on hover */
 }
 
 .nav-link:hover {
-    color: #2563EB; /* Blue-600 */
+    color: #2563EB; /* Blue-600 on hover */
 }
 
 .nav-link.active {
-    color: #2563EB; /* Blue-600 */
-    font-weight: 600;
+    color: #2563EB; /* Blue-600 for active link */
+    font-weight: 600; /* Bold active link */
 }
 
-/* Chart container for responsiveness */
+/* ==========================================================================
+   Calculator Section Styling
+   ========================================================================== */
+
+/* Ensure calculator sections are visible when not hidden */
+.calculator-section {
+    display: block;
+    transition: opacity 0.3s ease; /* Smooth fade for visibility toggle */
+    opacity: 1;
+}
+
+.calculator-section.hidden {
+    opacity: 0;
+    pointer-events: none; /* Prevent interaction when hidden */
+}
+
+/* Override Tailwind's hidden class for consistency */
+/* .hidden {
+    display: none !important;
+} */
+
+/* Style calculator cards for better visibility and 3D effect */
+.calculator-card-button,
+.calculator-section .card {
+    position: relative;
+    border: 2px solid #2563EB; /* Blue border for light mode */
+    border-radius: 12px; /* Rounded corners */
+    background-color: #FFFFFF; /* White background for cards */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06); /* Subtle shadow */
+    transform: translateZ(0); /* Enable 3D rendering */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; /* Smooth transitions */
+}
+
+.calculator-card-button:hover,
+.calculator-section .card:hover {
+    transform: translateY(-4px) translateZ(10px); /* Lift effect on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1); /* Deeper shadow */
+}
+
+.calculator-card-button:active,
+.calculator-section .card:active {
+    transform: translateY(-2px) translateZ(5px); /* Slight press effect */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow on click */
+}
+
+/* Style text within calculator sections for readability */
+.calculator-section p,
+.calculator-section label,
+.calculator-section input,
+.calculator-section select {
+    color: #1F2937; /* Dark gray for light mode */
+    font-weight: 500; /* Medium weight for clarity */
+}
+
+.calculator-section .text-4xl { /* Result text */
+    font-weight: 700; /* Bold for emphasis */
+    color: #1F2937; /* Dark gray for light mode */
+}
+
+/* Chart container for consistent chart sizing */
 .chart-container {
     position: relative;
     width: 100%;
-    max-width: 320px; /* Max width for desktop */
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 320px;
     height: 320px; /* Fixed height for consistent aspect ratio */
+    margin: 0 auto;
 }
 
-@media (max-width: 768px) {
-    .chart-container {
-        max-width: 280px;
-        height: 280px;
-    }
-}
-
-/* Slider thumb styling for custom appearance */
+/* Custom range slider thumb styling */
 .slider-thumb::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 20px;
-    height: 20px;
-    background: #2563EB; /* Blue-600 */
-    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    background: #2563EB; /* Blue-600 for light mode */
     border-radius: 50%;
-    transition: background 0.3s ease;
+    cursor: pointer;
+    border: 2px solid #FFFFFF; /* White border for contrast */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    transition: background 0.3s ease, transform 0.2s ease; /* Smooth transitions */
 }
 
 .slider-thumb::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
-    background: #2563EB; /* Blue-600 */
-    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    background: #2563EB; /* Blue-600 for light mode */
     border-radius: 50%;
-    transition: background 0.3s ease;
+    cursor: pointer;
+    border: 2px solid #FFFFFF;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
-/* Dark mode styles */
+.slider-thumb::-webkit-slider-thumb:hover,
+.slider-thumb::-moz-range-thumb:hover {
+    transform: scale(1.2); /* Slight scale on hover for interactivity */
+}
+
+/* Style range input track */
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: #E5E7EB; /* Gray track for light mode */
+    height: 8px;
+    border-radius: 4px;
+    outline: none;
+}
+
+/* Accessibility focus styles for interactive elements */
+.calculator-card-button:focus,
+button:focus,
+input:focus,
+select:focus {
+    outline: 2px solid #2563EB; /* Blue outline for light mode */
+    outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Dark Mode Styling
+   ========================================================================== */
+
+/* Adjust body for dark mode */
 .dark body {
     background-color: #1A202C; /* Dark Gray-900 */
-    color: #E2E8F0; /* Light Gray-200 */
+    color: #F3F4F6; /* Near-white for high contrast */
 }
 
+/* Dark mode hero background */
 .dark .hero-bg {
     background-color: #2D3748; /* Dark Gray-800 */
 }
 
+/* Dark mode brand and accent colors */
 .dark .brand-text {
-    color: #63B3ED; /* Light Blue-400 */
+    color: #93C5FD; /* Brighter blue for dark mode */
 }
 
 .dark .brand-bg {
-    background-color: #63B3ED;
+    background-color: #93C5FD; /* Brighter blue */
 }
 
 .dark .brand-bg-light {
@@ -106,41 +218,43 @@ body {
 }
 
 .dark .accent-text {
-    color: #68D391; /* Light Green-400 */
+    color: #86EFAC; /* Brighter green for dark mode */
 }
 
 .dark .accent-bg {
-    background-color: #68D391;
+    background-color: #86EFAC; /* Brighter green */
 }
 
+/* Dark mode navigation links */
 .dark .nav-link {
     color: #A0AEC0; /* Gray-400 */
 }
 
 .dark .nav-link:hover {
-    color: #63B3ED; /* Light Blue-400 */
+    color: #93C5FD; /* Brighter blue on hover */
 }
 
 .dark .nav-link.active {
-    color: #63B3ED; /* Light Blue-400 */
+    color: #93C5FD; /* Brighter blue for active link */
     font-weight: 600;
 }
 
+/* Dark mode Tailwind overrides */
 .dark .bg-white {
     background-color: #2D3748; /* Dark Gray-800 */
-    color: #E2E8F0;
+    color: #F3F4F6; /* Near-white text */
 }
 
 .dark .text-gray-900 {
-    color: #E2E8F0;
+    color: #F3F4F6; /* Near-white */
 }
 
 .dark .text-gray-600 {
-    color: #A0AEC0;
+    color: #A0AEC0; /* Gray-400 */
 }
 
 .dark .text-gray-700 {
-    color: #CBD5E0;
+    color: #CBD5E0; /* Gray-300 */
 }
 
 .dark .border-gray-300 {
@@ -151,15 +265,69 @@ body {
     background-color: #4A5568; /* Dark Gray-600 */
 }
 
+.dark .bg-gray-800 {
+    background-color: #1A202C; /* Dark Gray-900 */
+}
+
+.dark .border-gray-700 {
+    border-color: #2D3748; /* Dark Gray-800 */
+}
+
+.dark .text-gray-400 {
+    color: #A0AEC0; /* Gray-400 */
+}
+
+.dark .text-gray-500 {
+    color: #A0AEC0; /* Gray-400 */
+}
+
+/* Dark mode calculator card styling */
+.dark .calculator-card-button,
+.dark .calculator-section .card {
+    border-color: #93C5FD; /* Brighter blue border */
+    background-color: #2D3748; /* Dark Gray-800 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2); /* Darker shadow */
+}
+
+.dark .calculator-card-button:hover,
+.dark .calculator-section .card:hover {
+    transform: translateY(-4px) translateZ(10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.dark .calculator-card-button:active,
+.dark .calculator-section .card:active {
+    transform: translateY(-2px) translateZ(5px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Dark mode calculator text */
+.dark .calculator-section p,
+.dark .calculator-section label,
+.dark .calculator-section input,
+.dark .calculator-section select {
+    color: #F3F4F6; /* Near-white for high contrast */
+}
+
+.dark .calculator-section .text-4xl {
+    color: #FFFFFF; /* Pure white for results */
+}
+
+/* Dark mode slider thumb */
 .dark .slider-thumb::-webkit-slider-thumb {
-    background: #63B3ED; /* Light Blue-400 */
+    background: #93C5FD; /* Brighter blue */
 }
 
 .dark .slider-thumb::-moz-range-thumb {
-    background: #63B3ED; /* Light Blue-400 */
+    background: #93C5FD; /* Brighter blue */
 }
 
-/* Shadow adjustments for dark mode */
+/* Dark mode range input track */
+.dark input[type="range"] {
+    background: #6B7280; /* Darker gray track */
+}
+
+/* Dark mode shadows */
 .dark .shadow-sm {
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
 }
@@ -176,74 +344,60 @@ body {
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.25);
 }
 
-.dark .bg-gray-800 {
-    background-color: #1A202C;
+/* Dark mode focus styles */
+.dark .calculator-card-button:focus,
+.dark button:focus,
+.dark input:focus,
+.dark select:focus {
+    outline: 2px solid #93C5FD; /* Brighter blue outline */
 }
 
-.dark .border-gray-700 {
-    border-color: #2D3748;
-}
+/* ==========================================================================
+   Scrollbar Styling (Optional)
+   ========================================================================== */
 
-.dark .text-gray-400 {
-    color: #718096;
-}
-
-.dark .text-gray-500 {
-    color: #A0AEC0;
-}
-
-/* Custom scrollbar for product cards (removed from main site, kept for potential future use) */
+/* Custom scrollbar for product cards (if used) */
 .product-scroll-container::-webkit-scrollbar {
     height: 8px;
 }
 
 .product-scroll-container::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: #F1F1F1; /* Light gray track */
     border-radius: 10px;
 }
 
 .product-scroll-container::-webkit-scrollbar-thumb {
-    background: #888;
+    background: #888; /* Gray thumb */
     border-radius: 10px;
 }
 
 .product-scroll-container::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: #555; /* Darker gray on hover */
 }
 
 .dark .product-scroll-container::-webkit-scrollbar-track {
-    background: #2D3748;
+    background: #2D3748; /* Dark Gray-800 */
 }
 
 .dark .product-scroll-container::-webkit-scrollbar-thumb {
-    background: #4A5568;
+    background: #4A5568; /* Dark Gray-600 */
 }
 
 .dark .product-scroll-container::-webkit-scrollbar-thumb:hover {
-    background: #63B3ED;
+    background: #93C5FD; /* Brighter blue on hover */
 }
 
-/* Calculator card styles (for the buttons on calculators.html) */
-.calculator-card-button {
-    transition: all 0.3s ease;
-    border-radius: 0.5rem; /* rounded-lg */
-}
+/* ==========================================================================
+   Animation Keyframes
+   ========================================================================== */
 
-.calculator-card-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 15px -3px rgba(0, 0, 0, 0.15);
-}
-
-.dark .calculator-card-button:hover {
-    box-shadow: 0 8px 15px -3px rgba(0, 0, 0, 0.3);
-}
-
-/* Animations */
+/* Fade-in animation for elements */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
 }
 
+/* Fade-in with upward slide for elements */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -255,6 +409,7 @@ body {
     }
 }
 
+/* Apply animations to elements */
 .animate-fade-in {
     animation: fadeIn 0.6s ease-out forwards;
 }
@@ -263,22 +418,31 @@ body {
     animation: fadeInUp 0.8s ease-out forwards;
 }
 
-/* Delay for sequential animations */
+/* Delay classes for sequential animations */
 .delay-100 { animation-delay: 0.1s; }
 .delay-200 { animation-delay: 0.2s; }
 .delay-300 { animation-delay: 0.3s; }
 
-/* General prose styling for policy/terms pages */
+/* Apply fade-in animation to calculator cards */
+.calculator-card-button,
+.calculator-section .card {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* ==========================================================================
+   Prose Styling (Policy/Terms Pages)
+   ========================================================================== */
+
+/* Style content for policy/terms pages */
 .prose {
     font-size: 1.125rem; /* text-lg */
     line-height: 1.75; /* leading-relaxed */
-    max-width: 80ch; /* Limit line length for readability */
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 80ch; /* Limit line length */
+    margin: 0 auto;
 }
 
 .prose h1, .prose h2, .prose h3, .prose h4 {
-    font-weight: 700; /* font-bold */
+    font-weight: 700; /* Bold headings */
     margin-top: 1.5em;
     margin-bottom: 0.75em;
 }
@@ -302,32 +466,81 @@ body {
 }
 
 .prose a {
-    color: #2563EB; /* brand-text */
+    color: #2563EB; /* Blue-600 */
     text-decoration: underline;
 }
 
 .dark .prose a {
-    color: #63B3ED; /* dark:brand-text */
+    color: #93C5FD; /* Brighter blue */
 }
 
-/* Specific styling for calculator sections to hide/show */
-.calculator-section {
-    display: none; /* Hidden by default */
-}
+/* ==========================================================================
+   Responsive Iframe (Google Maps)
+   ========================================================================== */
 
-/* Responsive iframe for Google Maps */
+/* Responsive iframe container for embeds like Google Maps */
 .aspect-w-16 {
-  position: relative;
-  width: 100%;
+    position: relative;
+    width: 100%;
 }
+
 .aspect-h-9 {
-  padding-bottom: 56.25%; /* 9 / 16 * 100 */
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
 }
+
 .aspect-w-16 iframe,
 .aspect-h-9 iframe {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+/* ==========================================================================
+   Responsive Adjustments
+   ========================================================================== */
+
+/* Adjust styles for smaller screens */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px; /* Smaller font for mobile */
+    }
+
+    .calculator-section {
+        padding: 1rem;
+    }
+
+    .chart-container {
+        max-width: 280px;
+        height: 280px;
+    }
+
+    .slider-thumb::-webkit-slider-thumb,
+    .slider-thumb::-moz-range-thumb {
+        width: 16px;
+        height: 16px;
+    }
+
+    .calculator-section .text-4xl {
+        font-size: 1.75rem; /* Smaller result text */
+    }
+
+    .calculator-card-button,
+    .calculator-section .card {
+        border-width: 1px; /* Thinner border on mobile */
+    }
+}
+
+/* ==========================================================================
+   Parent Element Visibility
+   ========================================================================== */
+
+/* Ensure parent elements don't hide calculator sections */
+main,
+#calculators-page {
+    display: block;
+    visibility: visible;
+    position: relative;
+    z-index: 1;
 }

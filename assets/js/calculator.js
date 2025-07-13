@@ -1,16 +1,19 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Ensure Chart.js is loaded before proceeding with calculator logic
     if (typeof Chart === 'undefined') {
-        console.error('Chart.js is not loaded. Please ensure it is linked correctly.');
+        console.error('Chart.js is not loaded.');
+        //alert('Unable to load charts. Please try again later.');
         return;
     }
 
-    // Calculator Section Elements
     const emiCalculatorSection = document.getElementById('emi-calculator-section');
     const sipCalculatorSection = document.getElementById('sip-calculator-section');
     const fdCalculatorSection = document.getElementById('fd-calculator-section');
 
-    // EMI Calculator Elements
+    if (!emiCalculatorSection || !sipCalculatorSection || !fdCalculatorSection) {
+        console.error('One or more calculator sections not found.');
+        return;
+    }
+
     const loanAmountSlider = document.getElementById('loanAmount');
     const interestRateSlider = document.getElementById('interestRate');
     const loanTenureSlider = document.getElementById('loanTenure');
@@ -21,10 +24,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const principalResult = document.getElementById('principalResult');
     const interestResult = document.getElementById('interestResult');
     const totalResult = document.getElementById('totalResult');
-    const emiCtx = document.getElementById('emiChart') ? document.getElementById('emiChart').getContext('2d') : null;
+    const emiCtx = document.getElementById('emiChart')?.getContext('2d');
     let emiChart;
 
-    // SIP Calculator Elements
     const monthlyInvestmentSlider = document.getElementById('monthlyInvestment');
     const sipReturnRateSlider = document.getElementById('sipReturnRate');
     const investmentPeriodSlider = document.getElementById('investmentPeriod');
@@ -34,10 +36,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const sipResult = document.getElementById('sipResult');
     const investedAmountResult = document.getElementById('investedAmountResult');
     const wealthGainedResult = document.getElementById('wealthGainedResult');
-    const sipCtx = document.getElementById('sipChart') ? document.getElementById('sipChart').getContext('2d') : null;
+    const sipCtx = document.getElementById('sipChart')?.getContext('2d');
     let sipChart;
 
-    // FD Calculator Elements
     const fdPrincipalSlider = document.getElementById('fdPrincipal');
     const fdInterestRateSlider = document.getElementById('fdInterestRate');
     const fdTenureSlider = document.getElementById('fdTenure');
@@ -48,31 +49,44 @@ document.addEventListener('DOMContentLoaded', function () {
     const fdMaturityResult = document.getElementById('fdMaturityResult');
     const fdPrincipalInvested = document.getElementById('fdPrincipalInvested');
     const fdInterestEarned = document.getElementById('fdInterestEarned');
-    const fdCtx = document.getElementById('fdChart') ? document.getElementById('fdChart').getContext('2d') : null;
+    const fdCtx = document.getElementById('fdChart')?.getContext('2d');
     let fdChart;
 
-    const htmlElement = document.documentElement; // For theme detection
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenuButton.setAttribute('aria-expanded', mobileMenu.classList.contains('hidden') ? 'false' : 'true');
+        });
+    }
 
-    // Helper function to format currency for Indian Rupees
+    const currentYearSpan = document.getElementById('current-year-footer-calc');
+    if (currentYearSpan) {
+        currentYearSpan.textContent = new Date().getFullYear();
+    }
+
+    const htmlElement = document.documentElement;
+
     function formatCurrency(num) {
+        if (isNaN(num) || num <= 0) return '₹ 0';
         return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(num).replace('₹', '₹ ');
     }
 
-    // Helper function to format numbers with Indian locale commas
     function formatNumber(num) {
+        if (isNaN(num) || num <= 0) return '0';
         return new Intl.NumberFormat('en-IN').format(num);
     }
 
-    // --- EMI Calculator Functions ---
     function createEmiChart(principal, interest) {
-        if (emiChart) {
-            emiChart.destroy();
+        if (emiChart) emiChart.destroy();
+        if (!emiCtx) {
+            console.error('EMI Chart context not found.');
+            return;
         }
-        const textColor = htmlElement.classList.contains('dark') ? '#E2E8F0' : '#4B5563';
-        const principalColor = htmlElement.classList.contains('dark') ? '#63B3ED' : '#2563EB'; // Blue
-        const interestColor = htmlElement.classList.contains('dark') ? '#4A5568' : '#DBEAFE'; // Light Blue/Gray
-
-        if (!emiCtx) return; // Exit if context is not available
+        const textColor = htmlElement.classList.contains('dark') ? '#F3F4F6' : '#4B5563';
+        const principalColor = htmlElement.classList.contains('dark') ? '#93C5FD' : '#2563EB';
+        const interestColor = htmlElement.classList.contains('dark') ? '#4B5568' : '#DBEAFE';
 
         emiChart = new Chart(emiCtx, {
             type: 'doughnut',
@@ -96,113 +110,118 @@ document.addEventListener('DOMContentLoaded', function () {
                         position: 'bottom',
                         labels: {
                             color: textColor,
-                            font: {
-                                size: 14,
-                                family: 'Inter',
-                            },
+                            font: { size: 14, family: 'Inter', weight: '500' },
                             boxWidth: 15,
-                            padding: 20,
+                            padding: 20
                         }
                     },
                     tooltip: {
                         callbacks: {
                             label: function(context) {
                                 let label = context.label || '';
-                                if (label) {
-                                    label += ': ';
-                                }
-                                if (context.parsed !== null) {
-                                    label += formatCurrency(context.parsed);
-                                }
+                                if (label) label += ': ';
+                                if (context.parsed !== null) label += formatCurrency(context.parsed);
                                 return label;
                             }
                         }
                     }
+                },
+                animation: {
+                    animateScale: true,
+                    animateRotate: true
                 }
             }
         });
     }
 
     function calculateEMI() {
-        if (!loanAmountSlider || !interestRateSlider || !loanTenureSlider) return;
-
+        if (!loanAmountSlider || !interestRateSlider || !loanTenureSlider) {
+            console.error('EMI Calculator elements missing.');
+            return;
+        }
         const p = parseFloat(loanAmountSlider.value);
-        const r = parseFloat(interestRateSlider.value) / 12 / 100; // Monthly interest rate
-        const n = parseFloat(loanTenureSlider.value) * 12; // Total months
-
+        const r = parseFloat(interestRateSlider.value) / 12 / 100;
+        const n = parseFloat(loanTenureSlider.value) * 12;
         if (p > 0 && r > 0 && n > 0) {
             const emi = (p * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
             const totalPayment = emi * n;
             const totalInterest = totalPayment - p;
-
             if (emiResult) emiResult.textContent = formatCurrency(emi);
             if (principalResult) principalResult.textContent = formatCurrency(p);
             if (interestResult) interestResult.textContent = formatCurrency(totalInterest);
             if (totalResult) totalResult.textContent = formatCurrency(totalPayment);
-
             createEmiChart(p, totalInterest);
         } else {
-            // Handle invalid inputs (e.g., set to 0 or display error)
             if (emiResult) emiResult.textContent = formatCurrency(0);
             if (principalResult) principalResult.textContent = formatCurrency(0);
             if (interestResult) interestResult.textContent = formatCurrency(0);
             if (totalResult) totalResult.textContent = formatCurrency(0);
-            createEmiChart(0, 0); // Clear chart or show empty state
+            createEmiChart(0, 0);
         }
     }
 
     function updateEmiValues() {
         if (loanAmountValue) loanAmountValue.value = formatNumber(loanAmountSlider.value);
-        if (interestRateValue) interestRateValue.value = interestRateSlider.value;
+        if (interestRateValue) interestRateValue.value = parseFloat(interestRateSlider.value).toFixed(1);
         if (loanTenureValue) loanTenureValue.value = loanTenureSlider.value;
         calculateEMI();
     }
 
-    // Add event listeners for EMI calculator
-    if (loanAmountSlider) loanAmountSlider.addEventListener('input', updateEmiValues);
-    if (interestRateSlider) interestRateSlider.addEventListener('input', updateEmiValues);
-    if (loanTenureSlider) loanTenureSlider.addEventListener('input', updateEmiValues);
+    if (loanAmountSlider) {
+        loanAmountSlider.addEventListener('input', updateEmiValues);
+        loanAmountSlider.addEventListener('change', updateEmiValues);
+    }
+    if (interestRateSlider) {
+        interestRateSlider.addEventListener('input', updateEmiValues);
+        interestRateSlider.addEventListener('change', updateEmiValues);
+    }
+    if (loanTenureSlider) {
+        loanTenureSlider.addEventListener('input', updateEmiValues);
+        loanTenureSlider.addEventListener('change', updateEmiValues);
+    }
+    if (loanAmountValue) {
+        loanAmountValue.addEventListener('input', (e) => {
+            let val = parseInt(e.target.value.replace(/,/g, ''), 10);
+            if (!isNaN(val) && val >= parseInt(loanAmountSlider.min) && val <= parseInt(loanAmountSlider.max)) {
+                loanAmountSlider.value = val;
+                updateEmiValues();
+            } else {
+                loanAmountValue.value = formatNumber(loanAmountSlider.value);
+            }
+        });
+    }
+    if (interestRateValue) {
+        interestRateValue.addEventListener('input', (e) => {
+            let val = parseFloat(e.target.value);
+            if (!isNaN(val) && val >= parseFloat(interestRateSlider.min) && val <= parseFloat(interestRateSlider.max)) {
+                interestRateSlider.value = val;
+                updateEmiValues();
+            } else {
+                interestRateValue.value = parseFloat(interestRateSlider.value).toFixed(1);
+            }
+        });
+    }
+    if (loanTenureValue) {
+        loanTenureValue.addEventListener('input', (e) => {
+            let val = parseInt(e.target.value, 10);
+            if (!isNaN(val) && val >= parseInt(loanTenureSlider.min) && val <= parseInt(loanTenureSlider.max)) {
+                loanTenureSlider.value = val;
+                updateEmiValues();
+            } else {
+                loanTenureValue.value = loanTenureSlider.value;
+            }
+        });
+    }
 
-    if (loanAmountValue) loanAmountValue.addEventListener('change', (e) => {
-        let val = parseInt(e.target.value.replace(/,/g, ''), 10);
-        if (!isNaN(val) && val >= loanAmountSlider.min && val <= loanAmountSlider.max) {
-            loanAmountSlider.value = val;
-            updateEmiValues();
-        } else {
-            loanAmountValue.value = formatNumber(loanAmountSlider.value);
-        }
-    });
-
-    if (interestRateValue) interestRateValue.addEventListener('change', (e) => {
-        let val = parseFloat(e.target.value);
-        if (!isNaN(val) && val >= interestRateSlider.min && val <= interestRateSlider.max) {
-            interestRateSlider.value = val;
-            updateEmiValues();
-        } else {
-            interestRateValue.value = interestRateSlider.value;
-        }
-    });
-
-    if (loanTenureValue) loanTenureValue.addEventListener('change', (e) => {
-        let val = parseInt(e.target.value, 10);
-        if (!isNaN(val) && val >= loanTenureSlider.min && val <= loanTenureSlider.max) {
-            loanTenureSlider.value = val;
-            updateEmiValues();
-        } else {
-            loanTenureValue.value = loanTenureSlider.value;
-        }
-    });
-
-    // --- SIP Calculator Functions ---
     function createSipChart(invested, gained) {
-        if (sipChart) {
-            sipChart.destroy();
+        if (sipChart) sipChart.destroy();
+        if (!sipCtx) {
+            console.error('SIP Chart context not found.');
+            return;
         }
-        const textColor = htmlElement.classList.contains('dark') ? '#E2E8F0' : '#4B5563';
-        const investedColor = htmlElement.classList.contains('dark') ? '#68D391' : '#16A34A'; // Green
-        const gainedColor = htmlElement.classList.contains('dark') ? '#4A5568' : '#DBEAFE'; // Light Blue/Gray
-
-        if (!sipCtx) return; // Exit if context is not available
+        const textColor = htmlElement.classList.contains('dark') ? '#F3F4F6' : '#4B5563';
+        const investedColor = htmlElement.classList.contains('dark') ? '#86EFAC' : '#16A34A';
+        const gainedColor = htmlElement.classList.contains('dark') ? '#4B5568' : '#DBEAFE';
 
         sipChart = new Chart(sipCtx, {
             type: 'doughnut',
@@ -226,110 +245,116 @@ document.addEventListener('DOMContentLoaded', function () {
                         position: 'bottom',
                         labels: {
                             color: textColor,
-                            font: {
-                                size: 14,
-                                family: 'Inter',
-                            },
+                            font: { size: 14, family: 'Inter', weight: '500' },
                             boxWidth: 15,
-                            padding: 20,
+                            padding: 20
                         }
                     },
                     tooltip: {
                         callbacks: {
                             label: function(context) {
                                 let label = context.label || '';
-                                if (label) {
-                                    label += ': ';
-                                }
-                                if (context.parsed !== null) {
-                                    label += formatCurrency(context.parsed);
-                                }
+                                if (label) label += ': ';
+                                if (context.parsed !== null) label += formatCurrency(context.parsed);
                                 return label;
                             }
                         }
                     }
+                },
+                animation: {
+                    animateScale: true,
+                    animateRotate: true
                 }
             }
         });
     }
 
     function calculateSIP() {
-        if (!monthlyInvestmentSlider || !sipReturnRateSlider || !investmentPeriodSlider) return;
-
-        const p = parseFloat(monthlyInvestmentSlider.value); // Monthly Investment
-        const r = parseFloat(sipReturnRateSlider.value) / 100 / 12; // Monthly Rate
-        const n = parseFloat(investmentPeriodSlider.value) * 12; // Total Months
-
+        if (!monthlyInvestmentSlider || !sipReturnRateSlider || !investmentPeriodSlider) {
+            console.error('SIP Calculator elements missing.');
+            return;
+        }
+        const p = parseFloat(monthlyInvestmentSlider.value);
+        const r = parseFloat(sipReturnRateSlider.value) / 100 / 12;
+        const n = parseFloat(investmentPeriodSlider.value) * 12;
         if (p > 0 && r > 0 && n > 0) {
             const futureValue = p * ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
             const investedAmount = p * n;
             const wealthGained = futureValue - investedAmount;
-
             if (sipResult) sipResult.textContent = formatCurrency(futureValue);
             if (investedAmountResult) investedAmountResult.textContent = formatCurrency(investedAmount);
             if (wealthGainedResult) wealthGainedResult.textContent = formatCurrency(wealthGained);
-
             createSipChart(investedAmount, wealthGained);
         } else {
             if (sipResult) sipResult.textContent = formatCurrency(0);
             if (investedAmountResult) investedAmountResult.textContent = formatCurrency(0);
             if (wealthGainedResult) wealthGainedResult.textContent = formatCurrency(0);
-            createSipChart(0, 0); // Clear chart or show empty state
+            createSipChart(0, 0);
         }
     }
 
     function updateSipValues() {
         if (monthlyInvestmentValue) monthlyInvestmentValue.value = formatNumber(monthlyInvestmentSlider.value);
-        if (sipReturnRateValue) sipReturnRateValue.value = sipReturnRateSlider.value;
+        if (sipReturnRateValue) sipReturnRateValue.value = parseFloat(sipReturnRateSlider.value).toFixed(1);
         if (investmentPeriodValue) investmentPeriodValue.value = investmentPeriodSlider.value;
         calculateSIP();
     }
 
-    // Add event listeners for SIP calculator
-    if (monthlyInvestmentSlider) monthlyInvestmentSlider.addEventListener('input', updateSipValues);
-    if (sipReturnRateSlider) sipReturnRateSlider.addEventListener('input', updateSipValues);
-    if (investmentPeriodSlider) investmentPeriodSlider.addEventListener('input', updateSipValues);
+    if (monthlyInvestmentSlider) {
+        monthlyInvestmentSlider.addEventListener('input', updateSipValues);
+        monthlyInvestmentSlider.addEventListener('change', updateSipValues);
+    }
+    if (sipReturnRateSlider) {
+        sipReturnRateSlider.addEventListener('input', updateSipValues);
+        sipReturnRateSlider.addEventListener('change', updateSipValues);
+    }
+    if (investmentPeriodSlider) {
+        investmentPeriodSlider.addEventListener('input', updateSipValues);
+        investmentPeriodSlider.addEventListener('change', updateSipValues);
+    }
+    if (monthlyInvestmentValue) {
+        monthlyInvestmentValue.addEventListener('input', (e) => {
+            let val = parseInt(e.target.value.replace(/,/g, ''), 10);
+            if (!isNaN(val) && val >= parseInt(monthlyInvestmentSlider.min) && val <= parseInt(monthlyInvestmentSlider.max)) {
+                monthlyInvestmentSlider.value = val;
+                updateSipValues();
+            } else {
+                monthlyInvestmentValue.value = formatNumber(monthlyInvestmentSlider.value);
+            }
+        });
+    }
+    if (sipReturnRateValue) {
+        sipReturnRateValue.addEventListener('input', (e) => {
+            let val = parseFloat(e.target.value);
+            if (!isNaN(val) && val >= parseFloat(sipReturnRateSlider.min) && val <= parseFloat(sipReturnRateSlider.max)) {
+                sipReturnRateSlider.value = val;
+                updateSipValues();
+            } else {
+                sipReturnRateValue.value = parseFloat(sipReturnRateSlider.value).toFixed(1);
+            }
+        });
+    }
+    if (investmentPeriodValue) {
+        investmentPeriodValue.addEventListener('input', (e) => {
+            let val = parseInt(e.target.value, 10);
+            if (!isNaN(val) && val >= parseInt(investmentPeriodSlider.min) && val <= parseInt(investmentPeriodSlider.max)) {
+                investmentPeriodSlider.value = val;
+                updateSipValues();
+            } else {
+                investmentPeriodValue.value = investmentPeriodSlider.value;
+            }
+        });
+    }
 
-    if (monthlyInvestmentValue) monthlyInvestmentValue.addEventListener('change', (e) => {
-        let val = parseInt(e.target.value.replace(/,/g, ''), 10);
-        if (!isNaN(val) && val >= monthlyInvestmentSlider.min && val <= monthlyInvestmentSlider.max) {
-            monthlyInvestmentSlider.value = val;
-            updateSipValues();
-        } else {
-            monthlyInvestmentValue.value = formatNumber(monthlyInvestmentSlider.value);
-        }
-    });
-
-    if (sipReturnRateValue) sipReturnRateValue.addEventListener('change', (e) => {
-        let val = parseFloat(e.target.value);
-        if (!isNaN(val) && val >= sipReturnRateSlider.min && val <= sipReturnRateSlider.max) {
-            sipReturnRateSlider.value = val;
-            updateSipValues();
-        } else {
-            sipReturnRateValue.value = sipReturnRateSlider.value;
-        }
-    });
-
-    if (investmentPeriodValue) investmentPeriodValue.addEventListener('change', (e) => {
-        let val = parseInt(e.target.value, 10);
-        if (!isNaN(val) && val >= investmentPeriodSlider.min && val <= investmentPeriodSlider.max) {
-            investmentPeriodSlider.value = val;
-            updateSipValues();
-        } else {
-            investmentPeriodValue.value = investmentPeriodSlider.value;
-        }
-    });
-
-    // --- FD Calculator Functions ---
     function createFdChart(principal, interestEarned) {
-        if (fdChart) {
-            fdChart.destroy();
+        if (fdChart) fdChart.destroy();
+        if (!fdCtx) {
+            console.error('FD Chart context not found.');
+            return;
         }
-        const textColor = htmlElement.classList.contains('dark') ? '#E2E8F0' : '#4B5563';
-        const principalColor = htmlElement.classList.contains('dark') ? '#7C3AED' : '#9333EA'; // Purple
-        const interestColor = htmlElement.classList.contains('dark') ? '#4A5568' : '#DBEAFE'; // Light Blue/Gray
-
-        if (!fdCtx) return; // Exit if context is not available
+        const textColor = htmlElement.classList.contains('dark') ? '#F3F4F6' : '#4B5563';
+        const principalColor = htmlElement.classList.contains('dark') ? '#A78BFA' : '#9333EA';
+        const interestColor = htmlElement.classList.contains('dark') ? '#4B5568' : '#DBEAFE';
 
         fdChart = new Chart(fdCtx, {
             type: 'doughnut',
@@ -353,139 +378,159 @@ document.addEventListener('DOMContentLoaded', function () {
                         position: 'bottom',
                         labels: {
                             color: textColor,
-                            font: {
-                                size: 14,
-                                family: 'Inter',
-                            },
+                            font: { size: 14, family: 'Inter', weight: '500' },
                             boxWidth: 15,
-                            padding: 20,
+                            padding: 20
                         }
                     },
                     tooltip: {
                         callbacks: {
                             label: function(context) {
                                 let label = context.label || '';
-                                if (label) {
-                                    label += ': ';
-                                }
-                                if (context.parsed !== null) {
-                                    label += formatCurrency(context.parsed);
-                                }
+                                if (label) label += ': ';
+                                if (context.parsed !== null) label += formatCurrency(context.parsed);
                                 return label;
                             }
                         }
                     }
+                },
+                animation: {
+                    animateScale: true,
+                    animateRotate: true
                 }
             }
         });
     }
 
     function calculateFD() {
-        if (!fdPrincipalSlider || !fdInterestRateSlider || !fdTenureSlider || !compoundingFrequencySelect) return;
-
-        const p = parseFloat(fdPrincipalSlider.value); // Principal
-        const r = parseFloat(fdInterestRateSlider.value) / 100; // Annual interest rate
-        const t = parseFloat(fdTenureSlider.value); // Tenure in years
-        const n = parseFloat(compoundingFrequencySelect.value); // Compounding frequency per year
-
+        if (!fdPrincipalSlider || !fdInterestRateSlider || !fdTenureSlider || !compoundingFrequencySelect) {
+            console.error('FD Calculator elements missing.');
+            return;
+        }
+        const p = parseFloat(fdPrincipalSlider.value);
+        const r = parseFloat(fdInterestRateSlider.value) / 100;
+        const t = parseFloat(fdTenureSlider.value);
+        const n = parseFloat(compoundingFrequencySelect.value);
         if (p > 0 && r > 0 && t > 0 && n > 0) {
             const maturityAmount = p * Math.pow((1 + (r / n)), (n * t));
             const interestEarned = maturityAmount - p;
-
             if (fdMaturityResult) fdMaturityResult.textContent = formatCurrency(maturityAmount);
             if (fdPrincipalInvested) fdPrincipalInvested.textContent = formatCurrency(p);
             if (fdInterestEarned) fdInterestEarned.textContent = formatCurrency(interestEarned);
-
             createFdChart(p, interestEarned);
         } else {
             if (fdMaturityResult) fdMaturityResult.textContent = formatCurrency(0);
             if (fdPrincipalInvested) fdPrincipalInvested.textContent = formatCurrency(0);
             if (fdInterestEarned) fdInterestEarned.textContent = formatCurrency(0);
-            createFdChart(0, 0); // Clear chart or show empty state
+            createFdChart(0, 0);
         }
     }
 
     function updateFdValues() {
         if (fdPrincipalValue) fdPrincipalValue.value = formatNumber(fdPrincipalSlider.value);
-        if (fdInterestRateValue) fdInterestRateValue.value = fdInterestRateSlider.value;
+        if (fdInterestRateValue) fdInterestRateValue.value = parseFloat(fdInterestRateSlider.value).toFixed(1);
         if (fdTenureValue) fdTenureValue.value = fdTenureSlider.value;
         calculateFD();
     }
 
-    // Add event listeners for FD calculator
-    if (fdPrincipalSlider) fdPrincipalSlider.addEventListener('input', updateFdValues);
-    if (fdInterestRateSlider) fdInterestRateSlider.addEventListener('input', updateFdValues);
-    if (fdTenureSlider) fdTenureSlider.addEventListener('input', updateFdValues);
-    if (compoundingFrequencySelect) compoundingFrequencySelect.addEventListener('change', updateFdValues);
-
-    if (fdPrincipalValue) fdPrincipalValue.addEventListener('change', (e) => {
-        let val = parseInt(e.target.value.replace(/,/g, ''), 10);
-        if (!isNaN(val) && val >= fdPrincipalSlider.min && val <= fdPrincipalSlider.max) {
-            fdPrincipalSlider.value = val;
-            updateFdValues();
-        } else {
-            fdPrincipalValue.value = formatNumber(fdPrincipalSlider.value);
-        }
-    });
-
-    if (fdInterestRateValue) fdInterestRateValue.addEventListener('change', (e) => {
-        let val = parseFloat(e.target.value);
-        if (!isNaN(val) && val >= fdInterestRateSlider.min && val <= fdInterestRateSlider.max) {
-            fdInterestRateSlider.value = val;
-            updateFdValues();
-        } else {
-            fdInterestRateValue.value = fdInterestRateSlider.value;
-        }
-    });
-
-    if (fdTenureValue) fdTenureValue.addEventListener('change', (e) => {
-        let val = parseInt(e.target.value, 10);
-        if (!isNaN(val) && val >= fdTenureSlider.min && val <= fdTenureSlider.max) {
-            fdTenureSlider.value = val;
-            updateFdValues();
-        } else {
-            fdTenureValue.value = fdTenureSlider.value;
-        }
-    });
-
-
-    // --- Calculator Display Logic ---
-    window.showCalculator = function (type) {
-        // Hide all calculator sections first
-        const allCalculatorSections = document.querySelectorAll('.calculator-section');
-        allCalculatorSections.forEach(section => {
-            section.classList.add('hidden');
+    if (fdPrincipalSlider) {
+        fdPrincipalSlider.addEventListener('input', updateFdValues);
+        fdPrincipalSlider.addEventListener('change', updateFdValues);
+    }
+    if (fdInterestRateSlider) {
+        fdInterestRateSlider.addEventListener('input', updateFdValues);
+        fdInterestRateSlider.addEventListener('change', updateFdValues);
+    }
+    if (fdTenureSlider) {
+        fdTenureSlider.addEventListener('input', updateFdValues);
+        fdTenureSlider.addEventListener('change', updateFdValues);
+    }
+    if (compoundingFrequencySelect) {
+        compoundingFrequencySelect.addEventListener('change', updateFdValues);
+    }
+    if (fdPrincipalValue) {
+        fdPrincipalValue.addEventListener('input', (e) => {
+            let val = parseInt(e.target.value.replace(/,/g, ''), 10);
+            if (!isNaN(val) && val >= parseInt(fdPrincipalSlider.min) && val <= parseInt(fdPrincipalSlider.max)) {
+                fdPrincipalSlider.value = val;
+                updateFdValues();
+            } else {
+                fdPrincipalValue.value = formatNumber(fdPrincipalSlider.value);
+            }
         });
+    }
+    if (fdInterestRateValue) {
+        fdInterestRateValue.addEventListener('input', (e) => {
+            let val = parseFloat(e.target.value);
+            if (!isNaN(val) && val >= parseFloat(fdInterestRateSlider.min) && val <= parseFloat(fdInterestRateSlider.max)) {
+                fdInterestRateSlider.value = val;
+                updateFdValues();
+            } else {
+                fdInterestRateValue.value = parseFloat(fdInterestRateSlider.value).toFixed(1);
+            }
+        });
+    }
+    if (fdTenureValue) {
+        fdTenureValue.addEventListener('input', (e) => {
+            let val = parseInt(e.target.value, 10);
+            if (!isNaN(val) && val >= parseInt(fdTenureSlider.min) && val <= parseInt(fdTenureSlider.max)) {
+                fdTenureSlider.value = val;
+                updateFdValues();
+            } else {
+                fdTenureValue.value = fdTenureSlider.value;
+            }
+        });
+    }
 
-        // Show the requested calculator section
+    window.showCalculator = function (type) {
+        console.log('showCalculator called with type:', type);
+        [emiCalculatorSection, sipCalculatorSection, fdCalculatorSection].forEach(section => {
+            if (section) {
+                section.classList.add('hidden');
+                section.classList.remove('animate-fade-in-up'); // Reset animation
+            }
+        });
         let targetSection;
         if (type === 'emi' && emiCalculatorSection) {
             targetSection = emiCalculatorSection;
-            updateEmiValues(); // Calculate and draw chart for EMI
+            updateEmiValues();
         } else if (type === 'sip' && sipCalculatorSection) {
             targetSection = sipCalculatorSection;
-            updateSipValues(); // Calculate and draw chart for SIP
+            updateSipValues();
         } else if (type === 'fd' && fdCalculatorSection) {
             targetSection = fdCalculatorSection;
-            updateFdValues(); // Calculate and draw chart for FD
+            updateFdValues();
+        } else {
+            console.error('Invalid calculator type or section not found:', type);
+            return;
         }
-
-        if (targetSection) {
-            targetSection.classList.remove('hidden');
-            // Scroll to the calculator section
+        targetSection.classList.remove('hidden');
+        targetSection.classList.add('animate-fade-in-up'); // Trigger animation
+        setTimeout(() => {
             targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        }, 100);
     };
 
     window.hideAllCalculators = function () {
-        const allCalculatorSections = document.querySelectorAll('.calculator-section');
-        allCalculatorSections.forEach(section => {
-            section.classList.add('hidden');
+        console.log('hideAllCalculators called');
+        [emiCalculatorSection, sipCalculatorSection, fdCalculatorSection].forEach(section => {
+            if (section) section.classList.add('hidden');
         });
     };
 
-    // Initial calculation and chart drawing for default visible calculator
-    // This will run only if the calculator.html is loaded directly
+    const calculatorButtons = document.querySelectorAll('.calculator-card-button');
+    calculatorButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const type = button.getAttribute('onclick').match(/'([^']+)'/)?.[1];
+            if (type) {
+                console.log('Button clicked for type:', type);
+                window.showCalculator(type);
+            } else {
+                console.error('Calculator type not found in button onclick attribute.');
+            }
+        });
+    });
+
     if (emiCalculatorSection && !emiCalculatorSection.classList.contains('hidden')) {
         updateEmiValues();
     } else if (sipCalculatorSection && !sipCalculatorSection.classList.contains('hidden')) {
@@ -494,25 +539,22 @@ document.addEventListener('DOMContentLoaded', function () {
         updateFdValues();
     }
 
-    // Function to update charts when theme changes (called from script.js)
+    const hash = window.location.hash;
+    if (hash) {
+        const calculatorType = hash.replace('-calculator', '').substring(1);
+        if (['emi', 'sip', 'fd'].includes(calculatorType)) {
+            console.log('Navigating to calculator via hash:', calculatorType);
+            window.showCalculator(calculatorType);
+        }
+    }
+
     window.updateChartsOnThemeChange = function() {
         if (emiCalculatorSection && !emiCalculatorSection.classList.contains('hidden')) {
             calculateEMI();
-        }
-        if (sipCalculatorSection && !sipCalculatorSection.classList.contains('hidden')) {
+        } else if (sipCalculatorSection && !sipCalculatorSection.classList.contains('hidden')) {
             calculateSIP();
-        }
-        if (fdCalculatorSection && !fdCalculatorSection.classList.contains('hidden')) {
+        } else if (fdCalculatorSection && !fdCalculatorSection.classList.contains('hidden')) {
             calculateFD();
         }
     };
-
-    // Check URL hash for direct calculator links (e.g., calculators.html#sip-calculator)
-    const hash = window.location.hash;
-    if (hash) {
-        const calculatorType = hash.replace('-calculator', '').substring(1); // e.g., "#emi-calculator" -> "emi"
-        if (['emi', 'sip', 'fd'].includes(calculatorType)) {
-            showCalculator(calculatorType);
-        }
-    }
 });
