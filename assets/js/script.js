@@ -1,6 +1,13 @@
+// assets/js/script.js
+
 document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.adsbygoogle').forEach(ad => { if (ad.closest('section')) ad.closest('section').style.display = 'none'; else ad.style.display = 'none'; });
-    // Mobile menu toggle logic
+    // Hide ads by default (unchanged)
+    document.querySelectorAll('.adsbygoogle').forEach(ad => {
+        if (ad.closest('section')) ad.closest('section').style.display = 'none';
+        else ad.style.display = 'none';
+    });
+
+    // Mobile menu toggle logic (unchanged)
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
     if (mobileMenuButton && mobileMenu) {
@@ -16,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const htmlElement = document.documentElement;
 
     function setTheme(theme) {
+        console.log(`setTheme called with theme: ${theme}`);
         if (theme === 'dark') {
             htmlElement.classList.add('dark');
             if (sunIcon) sunIcon.classList.add('hidden');
@@ -26,38 +34,66 @@ document.addEventListener('DOMContentLoaded', function () {
             if (sunIcon) sunIcon.classList.remove('hidden');
             if (moonIcon) moonIcon.classList.add('hidden');
             localStorage.setItem('theme', 'light');
+            // Force light mode styles to counter browser dark mode
+            document.body.style.backgroundColor = '#F9FAFB';
+            document.body.style.color = '#1F2937';
         }
-        // Trigger chart redraw if charts are visible and Chart.js is loaded
+        // Trigger chart redraw and animations
         if (typeof Chart !== 'undefined' && window.updateChartsOnThemeChange) {
+            console.log('Triggering updateChartsOnThemeChange');
             window.updateChartsOnThemeChange();
         }
+        // Log current state for debugging
+        console.log(`Current theme in localStorage: ${localStorage.getItem('theme')}`);
+        console.log(`dark class on <html>: ${htmlElement.classList.contains('dark')}`);
     }
 
-    // Check for saved theme preference or system preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        setTheme(savedTheme);
-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        setTheme('dark');
-    } else {
-        setTheme('light');
+    // Initialize theme
+    function initializeTheme() {
+        // Explicitly remove dark class to prevent external interference
+        htmlElement.classList.remove('dark');
+        const savedTheme = localStorage.getItem('theme');
+        console.log(`Saved theme from localStorage: ${savedTheme}`);
+        if (savedTheme) {
+            setTheme(savedTheme);
+        } else {
+            setTheme('light'); // Default to light mode
+        }
+        // Safeguard: Reapply theme after 500ms to handle late scripts/extensions
+        setTimeout(() => {
+            const currentSavedTheme = localStorage.getItem('theme');
+            if (currentSavedTheme && currentSavedTheme !== (htmlElement.classList.contains('dark') ? 'dark' : 'light')) {
+                console.warn('Theme mismatch detected, reapplying saved theme:', currentSavedTheme);
+                setTheme(currentSavedTheme);
+            }
+        }, 500);
     }
 
+    // Theme toggle event listener
     if (themeToggle) {
         themeToggle.addEventListener('click', function () {
-            if (htmlElement.classList.contains('dark')) {
-                setTheme('light');
-            } else {
-                setTheme('dark');
-            }
+            const currentTheme = htmlElement.classList.contains('dark') ? 'dark' : 'light';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            console.log(`Toggling theme to: ${newTheme}`);
+            setTheme(newTheme);
         });
     }
 
-    // Dynamic year update for footers
-    const currentYearElements = document.querySelectorAll('[id^="current-year-footer"]');
-    const currentYearMain = document.getElementById('current-year'); // For index.html
-    const currentYear = new Date().getFullYear();
+    // Initialize theme on page load
+    initializeTheme();
 
+    // Monitor system theme changes (optional, for user convenience)
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        if (!localStorage.getItem('theme')) { // Only apply if no user preference
+            console.log(`System theme changed to: ${e.matches ? 'dark' : 'light'}`);
+            setTheme(e.matches ? 'dark' : 'light');
+        }
+    });
+
+    // Dynamic year update for footers (unchanged)
+    const currentYearElements = document.querySelectorAll('[id^="current-year-footer"]');
+    const currentYearMain = document.getElementById('current-year');
+    const currentYear = new Date().getFullYear();
     if (currentYearMain) {
         currentYearMain.textContent = currentYear;
     }
@@ -65,9 +101,8 @@ document.addEventListener('DOMContentLoaded', function () {
         element.textContent = currentYear;
     });
 
-    // Google Ads Initialization
+    // Google Ads Initialization (unchanged)
     const loadGoogleAds = () => {
-        // Only load if not already loaded by a previous script tag
         if (!document.querySelector('script[src^="https://pagead2.googlesyndication.com"]')) {
             const script = document.createElement('script');
             script.async = true;
@@ -75,17 +110,13 @@ document.addEventListener('DOMContentLoaded', function () {
             script.crossOrigin = 'anonymous';
             document.head.appendChild(script);
         }
-        // Push ad units after script is loaded
         (window.adsbygoogle = window.adsbygoogle || []).push({});
     };
-
-    // Load ads after page load
     window.addEventListener('load', loadGoogleAds);
 
-    // Active navigation link highlighting
+    // Active navigation link highlighting (unchanged)
     const navLinks = document.querySelectorAll('.nav-link');
-    const currentPath = window.location.pathname.split('/').pop(); // Get current file name
-
+    const currentPath = window.location.pathname.split('/').pop();
     navLinks.forEach(link => {
         const linkPath = link.getAttribute('href').split('/').pop();
         if (linkPath === currentPath) {
