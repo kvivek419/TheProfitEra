@@ -31,6 +31,27 @@ body {
     background-color: #F0F4F8; /* Light blue-gray for hero sections */
 }
 
+#hero {
+    background-image: url('../img/hero.png'); /* replace with your actual path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    isolation: isolate; /* ensures z-index layering works cleanly */
+}
+#hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5); /* adjust opacity for darkness */
+    z-index: 0;
+}
+#hero > .container {
+    position: relative;
+    z-index: 1;
+}
+
+
 .brand-text {
     color: #2563EB; /* Blue-600 for brand text in light mode */
     font-weight: 600; /* Slightly bold for emphasis */
@@ -544,3 +565,27 @@ main,
     position: relative;
     z-index: 1;
 }
+
+/* #investments-preview {
+    background-image: url('../img/investments_preview.png'); /* update with your correct path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    isolation: isolate; /* ensures layering clarity */
+    color: #F9FAFB; /* optional: ensures light text */
+}
+
+#investments-preview::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5); /* adjust for overlay darkness */
+    z-index: 0;
+}
+
+#investments-preview > .container,
+#investments-preview > div {
+    position: relative;
+    z-index: 1;
+} */
